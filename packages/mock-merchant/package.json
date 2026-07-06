@@ -1,0 +1,28 @@
+{
+  "name": "@acp-check/mock-merchant",
+  "version": "0.1.0",
+  "description": "In-memory reference ACP merchant server for testing acp-check (clean + deliberately-broken modes)",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "acp-mock-merchant": "dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  }
+}
