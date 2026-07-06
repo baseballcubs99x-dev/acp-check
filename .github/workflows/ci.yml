@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [20, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - name: Verify generated schemas match the spec snapshot
+        run: |
+          npm run gen:schemas
+          if ! git diff --quiet -- packages/core/src/schemas/generated; then
+            echo "::error::Generated schemas are out of date. Run 'npm run gen:schemas' and commit the result."
+            git --no-pager diff -- packages/core/src/schemas/generated
+            exit 1
+          fi
+      - run: npm run build
+      - run: npm run typecheck
+      - run: npm run test:coverage
+
+  publish-dry-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: npm publish --dry-run (cli)
+        run: npm publish --dry-run -w acp-check
+      - name: npm publish --dry-run (core)
+        run: npm publish --dry-run -w @acp-check/core
