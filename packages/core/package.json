@@ -1,0 +1,50 @@
+{
+  "name": "@acp-check/core",
+  "version": "0.1.0",
+  "description": "Validation engine for Agentic Commerce Protocol (ACP) integrations — feed, checkout endpoints, webhooks, readiness report",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "gen:schemas": "node scripts/extract-schemas.mjs",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "stream-json": "^1.8.0"
+  },
+  "devDependencies": {
+    "@types/stream-json": "^1.7.7",
+    "yaml": "^2.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acp-check/acp-check.git",
+    "directory": "packages/core"
+  },
+  "keywords": [
+    "acp",
+    "agentic-commerce-protocol",
+    "agentic-checkout",
+    "product-feed",
+    "validator",
+    "openai",
+    "chatgpt"
+  ]
+}
