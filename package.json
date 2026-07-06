@@ -1,0 +1,29 @@
+{
+  "name": "acp-check-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Pre-certification validator for Agentic Commerce Protocol (ACP) integrations",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "workspaces": [
+    "packages/core",
+    "packages/cli",
+    "packages/mock-merchant"
+  ],
+  "scripts": {
+    "build": "npm run build -w @acp-check/core -w @acp-check/mock-merchant -w acp-check",
+    "gen:schemas": "npm run gen:schemas -w @acp-check/core",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc -b packages/core packages/mock-merchant packages/cli",
+    "lint": "eslint packages/*/src"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@vitest/coverage-v8": "^2.1.9",
+    "typescript": "^5.5.4",
+    "vitest": "^2.1.9"
+  }
+}

@@ -1,0 +1,6 @@
+node_modules/
+dist/
+coverage/
+.acp-check/
+*.tsbuildinfo
+.DS_Store
