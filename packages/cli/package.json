@@ -37,11 +37,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/acp-check/acp-check.git",
+    "url": "git+https://github.com/baseballcubs99x-dev/acp-check.git",
     "directory": "packages/cli"
   },
-  "homepage": "https://github.com/acp-check/acp-check#readme",
+  "homepage": "https://github.com/baseballcubs99x-dev/acp-check#readme",
   "bugs": {
-    "url": "https://github.com/acp-check/acp-check/issues"
+    "url": "https://github.com/baseballcubs99x-dev/acp-check/issues"
   }
 }
