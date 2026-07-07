@@ -21,6 +21,20 @@ npx acp-check endpoints https://api.shop.example.com --auth-token $TOKEN
 
 ---
 
+## Spec Findings
+
+While building this tool, I found three self-contradictions in the official
+ACP spec — cases where the spec's own schema disagrees with its own examples
+or its own prose. Filed upstream:
+
+- [#277](https://github.com/agentic-commerce-protocol/agentic-commerce-protocol/issues/277) — CheckoutSessionWithOrder rejects its own documented example
+- [#278](https://github.com/agentic-commerce-protocol/agentic-commerce-protocol/issues/278) — "items" vs "line_items" — inline example contradicts request schema
+- [#279](https://github.com/agentic-commerce-protocol/agentic-commerce-protocol/issues/279) — PaymentHandler.display_order documented but structurally excluded (indentation bug)
+
+Full technical writeup with line numbers and repro steps: [SPEC_NOTES.md](./SPEC_NOTES.md)
+
+---
+
 ## 60-second quickstart
 
 ```bash
