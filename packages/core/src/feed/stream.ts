@@ -72,7 +72,7 @@ async function peek(stream: Readable, n = 65536): Promise<{ head: Buffer; replay
 
 /** SPEC_NOTES §5: .jsonl/.ndjson (spec snapshot format), or .json envelope/array. */
 export function detectFormatFromHead(head: string): FeedFormat {
-  const trimmed = head.replace(/^﻿/, "").trimStart();
+  const trimmed = head.replace(/^\uFEFF/, "").trimStart();
   if (trimmed.startsWith("[")) return "json-array";
   const firstLine = trimmed.split("\n", 1)[0] ?? "";
   try {
@@ -90,7 +90,7 @@ async function* iterateJsonl(stream: Readable): AsyncIterable<FeedItem> {
   const rl = createInterface({ input: stream, crlfDelay: Infinity });
   let index = 0;
   for await (const line of rl) {
-    const text = line.replace(/^﻿/, "").trim();
+    const text = line.replace(/^\uFEFF/, "").trim();
     if (text === "") continue;
     try {
       yield { index, value: JSON.parse(text) };
